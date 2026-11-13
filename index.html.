@@ -1,1 +1,54 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MG SHOP | Tienda Gamer</title>
+  <style>
+    body {
+      margin: 0;
+      background: #10101b;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    header {
+      padding: 45px 15px;
+      background: linear-gradient(135deg, #15152b, #3030a0);
+    }
+    h1 { color: #45d9ff; font-size: 42px; }
+    .card {
+      margin: 30px auto;
+      padding: 25px;
+      max-width: 340px;
+      background: #202034;
+      border-radius: 16px;
+    }
+    .button {
+      display: inline-block;
+      padding: 13px 25px;
+      background: #13b9e8;
+      color: #10101b;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MG SHOP</h1>
+    <p>Tu tienda gamer de confianza</p>
+  </header>
+  <div class="card">
+    <h2>Diamantes Free Fire</h2>
+    <p>Próximamente podrás elegir tus paquetes y realizar tus pedidos.</p>
+    <p>Estamos preparando nuestra tienda.</p>
+  </div>
+  <footer>
+    <p>© 2026 MG SHOP</p>
+  </footer>
+</body>
+</html>
+
