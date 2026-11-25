@@ -2,53 +2,463 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MG SHOP | Tienda Gamer</title>
-  <style>
-    body {
-      margin: 0;
-      background: #10101b;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    header {
-      padding: 45px 15px;
-      background: linear-gradient(135deg, #15152b, #3030a0);
-    }
-    h1 { color: #45d9ff; font-size: 42px; }
-    .card {
-      margin: 30px auto;
-      padding: 25px;
-      max-width: 340px;
-      background: #202034;
-      border-radius: 16px;
-    }
-    .button {
-      display: inline-block;
-      padding: 13px 25px;
-      background: #13b9e8;
-      color: #10101b;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MG SHOP | Gaming Store</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080b12;
+  color: #f5f7ff;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 30px 18px;
+  background: linear-gradient(135deg, #101d35, #07101e);
+  border-bottom: 1px solid #1e65ff;
+  text-align: center;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 900;
+  color: #49a0ff;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: white;
+}
+
+.subtitle {
+  color: #aab8d0;
+  margin-top: 8px;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 12px;
+  background: #14251e;
+  color: #69e6a2;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px 14px 50px;
+}
+
+.section-title {
+  color: #55a3ff;
+  margin: 26px 0 15px;
+}
+
+.uid-box {
+  background: #111827;
+  border: 1px solid #263850;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #31445f;
+  background: #080e19;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #3994ff;
+}
+
+.search {
+  margin: 15px 0;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: linear-gradient(160deg, #151f31, #0c111b);
+  border: 1px solid #243651;
+  border-radius: 14px;
+  padding: 15px 12px;
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.diamond {
+  font-size: 28px;
+}
+
+.price {
+  color: #59a8ff;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 12px 0;
+}
+
+button {
+  border: none;
+  border-radius: 9px;
+  padding: 11px 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add {
+  background: #1674ff;
+  color: white;
+  width: 100%;
+}
+
+.add:active {
+  transform: scale(.97);
+}
+
+.cart {
+  margin-top: 35px;
+  background: #111827;
+  border: 1px solid #273a54;
+  border-radius: 15px;
+  padding: 18px;
+}
+
+.cart-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #29364a;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.remove {
+  background: #7f1d1d;
+  color: white;
+  padding: 7px 10px;
+}
+
+.total {
+  font-size: 22px;
+  color: #62adff;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.message {
+  padding: 18px;
+  background: #121a27;
+  border-radius: 12px;
+  margin: 12px 0;
+  color: #b9c7dc;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #77869e;
+  border-top: 1px solid #1c2838;
+}
+
+.hidden {
+  display: none;
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>MG SHOP</h1>
-    <p>Tu tienda gamer de confianza</p>
-  </header>
-  <div class="card">
-    <h2>Diamantes Free Fire</h2>
-    <p>Próximamente podrás elegir tus paquetes y realizar tus pedidos.</p>
-    <p>Estamos preparando nuestra tienda.</p>
+
+<header>
+  <div class="logo">MG <span>SHOP</span></div>
+  <div class="subtitle">Gaming Store · Digital Products</div>
+  <div class="status" id="connection">Conectando al catálogo...</div>
+</header>
+
+<main>
+
+  <h2 class="section-title">🎮 Free Fire</h2>
+
+  <div class="uid-box">
+    <label for="playerUID">UID del jugador</label>
+    <input
+      id="playerUID"
+      type="text"
+      inputmode="numeric"
+      placeholder="Introduce tu UID de Free Fire"
+      autocomplete="off"
+    >
   </div>
-  <footer>
-    <p>© 2026 MG SHOP</p>
-  </footer>
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="Buscar diamantes o paquetes..."
+  >
+
+  <div id="loading" class="message">
+    Cargando catálogo de productos...
+  </div>
+
+  <div id="error" class="message hidden"></div>
+
+  <div class="products" id="products"></div>
+
+  <section class="cart">
+    <h2 class="section-title">🛒 Tu carrito</h2>
+    <div id="cartItems">Tu carrito está vacío.</div>
+    <div class="total" id="total">Total: $0.00</div>
+    <p style="color:#8594aa;font-size:13px">
+      Los productos agregados no se compran automáticamente.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  MG SHOP · Gaming Store
+</footer>
+
+<script>
+const API_URL = "https://mg-shop.wilberclrs97.workers.dev/api/products";
+
+let allProducts = [];
+let cart = [];
+
+const connection = document.getElementById("connection");
+const loading = document.getElementById("loading");
+const errorBox = document.getElementById("error");
+const productsContainer = document.getElementById("products");
+const cartItems = document.getElementById("cartItems");
+const totalBox = document.getElementById("total");
+const searchInput = document.getElementById("search");
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function getProductName(product) {
+  return product.name || product.nombre || product.title || "Producto";
+}
+
+function getProductPrice(product) {
+  const price = Number(product.price ?? product.precio ?? 0);
+  return Number.isFinite(price) ? price : 0;
+}
+
+function getProductKey(product) {
+  return product.product_key || product.productKey || product.key || "";
+}
+
+function getProductAmount(product) {
+  return product.amount ?? product.quantity ?? product.cantidad ?? "";
+}
+
+function flattenCatalog(data) {
+  if (Array.isArray(data)) {
+    return data;
+  }
+
+  if (Array.isArray(data.products)) {
+    return data.products;
+  }
+
+  if (Array.isArray(data.productos)) {
+    return data.productos;
+  }
+
+  if (Array.isArray(data.categories)) {
+    return data.categories.flatMap(category =>
+      category.products || category.productos || []
+    );
+  }
+
+  if (Array.isArray(data.categorias)) {
+    return data.categorias.flatMap(category =>
+      category.products || category.productos || []
+    );
+  }
+
+  return [];
+}
+
+async function loadCatalog() {
+  loading.classList.remove("hidden");
+  errorBox.classList.add("hidden");
+  connection.textContent = "Conectando al proveedor...";
+  connection.style.color = "#ffd166";
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      },
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error("El Worker respondió HTTP " + response.status);
+    }
+
+    const data = await response.json();
+    allProducts = flattenCatalog(data);
+
+    if (!allProducts.length) {
+      throw new Error("El catálogo llegó vacío o tiene otro formato.");
+    }
+
+    connection.textContent = "● Catálogo conectado";
+    connection.style.color = "#69e6a2";
+
+    loading.classList.add("hidden");
+    renderProducts();
+
+  } catch (err) {
+    loading.classList.add("hidden");
+    connection.textContent = "Catálogo no disponible";
+    connection.style.color = "#ff7777";
+
+    errorBox.textContent =
+      "No pudimos cargar los productos. " + err.message;
+
+    errorBox.classList.remove("hidden");
+  }
+}
+
+function renderProducts() {
+  const query = searchInput.value.trim().toLowerCase();
+
+  const filtered = allProducts.filter(product => {
+    const name = getProductName(product).toLowerCase();
+    return name.includes(query);
+  });
+
+  if (!filtered.length) {
+    productsContainer.innerHTML =
+      '<div class="message">No se encontraron productos.</div>';
+    return;
+  }
+
+  productsContainer.innerHTML = filtered.map((product, index) => {
+    const name = getProductName(product);
+    const price = getProductPrice(product);
+    const amount = getProductAmount(product);
+
+    return `
+      <div class="card">
+        <div class="diamond">💎</div>
+        <h3>${escapeHTML(name)}</h3>
+        ${amount ? `<div>${escapeHTML(amount)} Diamantes</div>` : ""}
+        <div class="price">$${price.toFixed(2)}</div>
+        <button class="add" data-index="${index}" data-name="${escapeHTML(name)}">
+          Agregar
+        </button>
+      </div>
+    `;
+  }).join("");
+
+  productsContainer.querySelectorAll(".add").forEach(button => {
+    button.addEventListener("click", () => {
+      const name = button.dataset.name;
+      const product = filtered.find(p => getProductName(p) === name);
+      if (product) addToCart(product);
+    });
+  });
+}
+
+function addToCart(product) {
+  const key = getProductKey(product);
+  const existing = cart.find(item =>
+    getProductKey(item.product) === key &&
+    key !== ""
+  );
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      product,
+      quantity: 1
+    });
+  }
+
+  renderCart();
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  renderCart();
+}
+
+function renderCart() {
+  if (!cart.length) {
+    cartItems.innerHTML = "Tu carrito está vacío.";
+    totalBox.textContent = "Total: $0.00";
+    return;
+  }
+
+  cartItems.innerHTML = cart.map((item, index) => {
+    const name = getProductName(item.product);
+    const price = getProductPrice(item.product);
+    const subtotal = price * item.quantity;
+
+    return `
+      <div class="cart-item">
+        <div>
+          <strong>${escapeHTML(name)}</strong><br>
+          <small>${item.quantity} × $${price.toFixed(2)}</small><br>
+          <strong>$${subtotal.toFixed(2)}</strong>
+        </div>
+        <button class="remove" data-remove="${index}">Quitar</button>
+      </div>
+    `;
+  }).join("");
+
+  const total = cart.reduce((sum, item) => {
+    return sum + getProductPrice(item.product) * item.quantity;
+  }, 0);
+
+  totalBox.textContent = "Total: $" + total.toFixed(2);
+
+  cartItems.querySelectorAll("[data-remove]").forEach(button => {
+    button.addEventListener("click", () => {
+      removeFromCart(Number(button.dataset.remove));
+    });
+  });
+}
+
+searchInput.addEventListener("input", renderProducts);
+
+loadCatalog();
+</script>
+
 </body>
 </html>
-
